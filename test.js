@@ -1,6 +1,6 @@
 async function generateRandomName() {
     return new Promise(resolve => {
-        const firstNames = ["John", "Emma", "Michael", "Olivia", "William", "Sophia", "James", "Isabella", "Daniel", "Mia"];
+        const firstNames = ["Muh","Ara","James", "Isabella", "Daniel", "Mia"];
         const lastNames = ["Smith", "Johnson", "Williams", "Jones", "Brown", "Davis", "Miller", "Wilson", "Moore", "Taylor"];
 
         const randomFirstName = firstNames[Math.floor(Math.random() * firstNames.length)];
@@ -12,8 +12,8 @@ async function generateRandomName() {
 
 async function generateRandomEmail() {
     return new Promise(resolve => {
-        const domains = ["gmail.com", "yahoo.com", "hotmail.com", "outlook.com", "aol.com"];
-        const randomDomain = domains[Math.floor(Math.random() * domains.length)];
+        const mailDomains = ["gmail.com", "yahoo.com", "hotmail.com", "outlook.com", "station.com"];
+        const randomDomain = mailDomains[Math.floor(Math.random() * mailDomains.length)];
 
         generateRandomName().then(randomName => {
             const randomNumber = Math.floor(Math.random() * 1000); // Random number for uniqueness
