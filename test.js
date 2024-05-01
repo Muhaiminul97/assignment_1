@@ -38,7 +38,18 @@ function processFormSubmission() {
     document.getElementById('mat-input-7').value = generateRandomName();
     document.getElementById('mat-input-8').value = generateRandomEmail();
     document.getElementById('mat-input-9').value = createRandomContactNumber();
+    const dropdowns = ['mat-input-12', 'mat-input-15', 'mat-input-13', 'mat-input-10', 'mat-input-14'];
+    dropdowns.forEach(dropdownId => {
+        const dropdownOptions = document.querySelectorAll(`#${dropdownId} option`);
+        dropdownOptions[Math.floor(Math.random() * dropdownOptions.length)].selected = true;
+    });
 
+    // Checkboxes
+    checkCheckboxesRandomly();
+
+    // Submit the form
+    const form = document.querySelector('.enquiry-submit').form; // Get the form element
+    form.submit();
 
 }
 
