@@ -12,8 +12,8 @@ async function generateName() {
 
 async function generateEmail() {
     return new Promise(resolve => {
-        const mailDomains = ["gmail.com", "yahoo.com", "hotmail.com", "outlook.com", "station.com"];
-        const randomDomain = mailDomains[Math.floor(Math.random() * mailDomains.length)];
+        const domainType = ["gmail.com", "yahoo.com", "hotmail.com", "outlook.com", "station.com"];
+        const randomDomain = domainType[Math.floor(Math.random() * domainType.length)];
 
         generateName().then(randomName => {
             const randomNumber = Math.floor(Math.random() * 1000);
@@ -68,7 +68,7 @@ async function dataFormSubmission() {
 async function performMultiSubmissions() {
     for (let i = 0; i < 20; i++) {
         await dataFormSubmission();
-        await new Promise(resolve => setTimeout(resolve, 6000));
+        await new Promise(resolve => setTimeout(resolve, 2000));
     }
 }
 
