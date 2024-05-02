@@ -1,7 +1,7 @@
-async function generateRandomName() {
+async function generateName() {
     return new Promise(resolve => {
-        const firstNames = ["Muh","Ara","James", "Isabella", "Daniel", "Mia"];
-        const lastNames = ["Smith", "Johnson", "Williams", "Jones", "Brown", "Davis"];
+        const firstNames = ["Muh","Ara","James"];
+        const lastNames = ["John", "Will", "Jonson"];
 
         const randomFirstName = firstNames[Math.floor(Math.random() * firstNames.length)];
         const randomLastName = lastNames[Math.floor(Math.random() * lastNames.length)];
@@ -10,29 +10,35 @@ async function generateRandomName() {
     });
 }
 
-async function generateRandomEmail() {
+async function generateEmail() {
     return new Promise(resolve => {
         const mailDomains = ["gmail.com", "yahoo.com", "hotmail.com", "outlook.com", "station.com"];
         const randomDomain = mailDomains[Math.floor(Math.random() * mailDomains.length)];
 
-        generateRandomName().then(randomName => {
+        generateName().then(randomName => {
             const randomNumber = Math.floor(Math.random() * 1000);
             resolve(`${randomName.replace(/\s/g, '').toLowerCase()}${randomNumber}@${randomDomain}`);
         });
     });
 }
 
-async function createRandomContactNumber() {
+async function createRandomContact() {
     return new Promise(resolve => {
-        const dialingCodes = ["02", "03", "07", "08"];
-        const randomDialingCode = dialingCodes[Math.floor(Math.random() * dialingCodes.length)];
-        const randomDigit = Math.floor(100000 + Math.random() * 900000);
+        let starterDigit = "4";
+        for (let i = 1; i <= 8; i++) {
+            starterDigit += Math.floor(Math.random() * 10);
+        }
 
-        resolve(`${randomDialingCode}${randomDigit}`);
+        let mob = document.getElementById("phone");
+        mob.click();
+        mob.value = starterDigit;
+
+
+
     });
 }
 
-async function checkCheckboxesRandomly() {
+async function checkCheckboxes() {
     return new Promise(resolve => {
         const checkboxes = document.querySelectorAll('input[type="checkbox"]');
         checkboxes.forEach(checkbox => {
@@ -42,10 +48,10 @@ async function checkCheckboxesRandomly() {
     });
 }
 
-async function processFormSubmission() {
-    await generateRandomName().then(randomName => document.getElementById('mat-input-7').value = randomName);
-    await generateRandomEmail().then(randomEmail => document.getElementById('mat-input-8').value = randomEmail);
-    await createRandomContactNumber().then(randomContactNumber => document.getElementById('mat-input-9').value = randomContactNumber);
+async function dataFormSubmission() {
+    await generateName().then(randomName => document.getElementById('mat-input-7').value = randomName);
+    await generateEmail().then(randomEmail => document.getElementById('mat-input-8').value = randomEmail);
+    await createRandomContact().then(randomContactNumber => document.getElementById('mat-input-9').value = randomContactNumber);
 
     const dropdowns = ['mat-input-12', 'mat-input-15', 'mat-input-13', 'mat-input-10', 'mat-input-14'];
     dropdowns.forEach(dropdownId => {
@@ -53,18 +59,18 @@ async function processFormSubmission() {
         dropdownOptions[Math.floor(Math.random() * dropdownOptions.length)].selected = true;
     });
 
-    await checkCheckboxesRandomly();
+    await checkCheckboxes();
 
     const form = document.querySelector('.enquiry-submit').form;
     form.submit();
 }
 
-async function performMultipleSubmissions() {
+async function performMultiSubmissions() {
     for (let i = 0; i < 20; i++) {
-        await processFormSubmission();
+        await dataFormSubmission();
         await new Promise(resolve => setTimeout(resolve, 6000));
     }
 }
 
 document.querySelector('.mat-button-wrapper').click();
-setTimeout(performMultipleSubmissions, 3000);
+setTimeout(performMultiSubmissions, 3000);
