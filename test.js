@@ -1,7 +1,7 @@
 async function generateRandomName() {
     return new Promise(resolve => {
         const firstNames = ["Muh","Ara","James", "Isabella", "Daniel", "Mia"];
-        const lastNames = ["Smith", "Johnson", "Williams", "Jones", "Brown", "Davis", "Miller", "Wilson", "Moore", "Taylor"];
+        const lastNames = ["Smith", "Johnson", "Williams", "Jones", "Brown", "Davis"];
 
         const randomFirstName = firstNames[Math.floor(Math.random() * firstNames.length)];
         const randomLastName = lastNames[Math.floor(Math.random() * lastNames.length)];
@@ -16,7 +16,7 @@ async function generateRandomEmail() {
         const randomDomain = mailDomains[Math.floor(Math.random() * mailDomains.length)];
 
         generateRandomName().then(randomName => {
-            const randomNumber = Math.floor(Math.random() * 1000); // Random number for uniqueness
+            const randomNumber = Math.floor(Math.random() * 1000);
             resolve(`${randomName.replace(/\s/g, '').toLowerCase()}${randomNumber}@${randomDomain}`);
         });
     });
@@ -26,9 +26,9 @@ async function createRandomContactNumber() {
     return new Promise(resolve => {
         const dialingCodes = ["02", "03", "07", "08"];
         const randomDialingCode = dialingCodes[Math.floor(Math.random() * dialingCodes.length)];
-        const randomDigit = Math.floor(10000000 + Math.random() * 90000000);
+        const randomDigit = Math.floor(100000 + Math.random() * 900000);
 
-        resolve(`+61${randomDialingCode}${randomDigit}`);
+        resolve(`${randomDialingCode}${randomDigit}`);
     });
 }
 
@@ -55,7 +55,6 @@ async function processFormSubmission() {
 
     await checkCheckboxesRandomly();
 
-    // Submit the form
     const form = document.querySelector('.enquiry-submit').form;
     form.submit();
 }
