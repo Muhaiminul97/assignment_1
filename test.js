@@ -1,12 +1,7 @@
 async function generateName() {
     return new Promise(resolve => {
-        const firstNames = ["Muh","Ara","James"];
-        const lastNames = ["John", "Will", "Jonson"];
-
-        const setFirstName = firstNames[Math.floor(Math.random() * firstNames.length)];
-        const setLastName = lastNames[Math.floor(Math.random() * lastNames.length)];
-
-        resolve(`${setFirstName} ${setLastName}`);
+        const firstNames = "Shakib";
+        resolve(`${firstNames}`);
     });
 }
 
@@ -46,7 +41,6 @@ async function checkMultiCheckboxes() {
 }
 
 async function dataFormSubmission() {
-    await generateName().then(randomName => document.getElementById('mat-input-7').value = randomName);
     await generateEmail().then(randomEmail => document.getElementById('mat-input-8').value = randomEmail);
     await createRandomContact().then(randomContactNumber => document.getElementById('mat-input-9').value = randomContactNumber);
 
@@ -63,7 +57,9 @@ async function dataFormSubmission() {
 }
 
 async function performMultiSubmissions() {
-    for (let i = 0; i < 20; i++) {
+    for (let i = 1; i < 20; i++) {
+        await generateName().then(randomName => document.getElementById('mat-input-7').value = randomName+i);
+
         await dataFormSubmission();
         await new Promise(resolve => setTimeout(resolve, 2000));
     }
